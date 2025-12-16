@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:youtube_video_webview/utils/youtube_helper.dart';
 import 'package:youtube_video_webview/utils/youtube_webview_app_bar_type.dart';
 
@@ -20,15 +19,9 @@ class YoutubeWebviewAppBar extends StatelessWidget
         IconButton(
           icon: const Icon(Icons.share),
           onPressed: () {
-            SharePlus.instance.share(
-              ShareParams(
-                uri: !useText && appBarShare.videoId != null
-                    ? Uri.parse(YoutubeHelper.getShareUrl(appBarShare.videoId!))
-                    : null,
-                text: useText
-                    ? "${appBarShare.shareText} ${appBarShare.videoId != null ? " ${YoutubeHelper.getShareUrl(appBarShare.videoId!)}" : ""}"
-                    : null,
-              ),
+            YoutubeHelper.showShareDialog(
+              appBarShare.videoId != null ? appBarShare.videoId! : "",
+              useText ? appBarShare.shareText : null,
             );
           },
         ),

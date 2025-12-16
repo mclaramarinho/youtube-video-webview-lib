@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:youtube_video_webview/utils/design/responsive_size.dart';
 import 'package:youtube_video_webview/utils/youtube_helper.dart';
+import 'package:youtube_video_webview/utils/youtube_webview_app_bar_type.dart';
 import 'package:youtube_video_webview/utils/youtube_webview_external_browser_settings.dart';
 import 'package:youtube_video_webview/widgets/external_browser/youtuber_webview_external_browser.dart';
 
@@ -30,6 +32,8 @@ class YoutubeVideoWebview extends StatefulWidget {
 class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
   late WebViewController controller;
   late NavigationDelegate navigationDelegate;
+  bool builtOnce = false;
+  bool addedEventToShareButton = false;
 
   Map<String, String> get youtubeHeaders => YoutubeHelper.getYoutubeHeaders(
     widget.referrerHeader,
@@ -39,8 +43,8 @@ class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
   String get youtubeEmbedUrl =>
       YoutubeHelper.getYoutubeEmbedUrl(widget.videoId);
 
-  double get height => widget.height ?? 200.0;
-  double get width => widget.width ?? 500;
+  double get height => widget.height ?? ResponsiveSize.x200;
+  double get width => widget.width ?? ResponsiveSize.x500;
 
   @override
   void initState() {
@@ -65,15 +69,35 @@ class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
         }
         return NavigationDecision.prevent;
       },
+      onPageFinished: (url) {
+        if (!addedEventToShareButton) {
+          addedEventToShareButton = true;
+          controller.runJavaScript(YoutubeHelper.shareButtonJS);
+        }
+      }
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final appBarShare =
+        widget.externalBrowserSettings.appBar is YoutubeVideoWebviewAppBarShare
+        ? widget.externalBrowserSettings.appBar
+              as YoutubeVideoWebviewAppBarShare
+        : null;
+    final useText = appBarShare?.shareText != null;
+
     controller
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..loadRequest(Uri.parse(youtubeEmbedUrl), headers: youtubeHeaders)
+      ..addJavaScriptChannel(
+        YoutubeHelper.shareChannelName,
+        onMessageReceived: (JavaScriptMessage message) {
+          YoutubeHelper.showShareDialog(widget.videoId, useText ? appBarShare!.shareText : null);
+        },
+      )
       ..setNavigationDelegate(navigationDelegate);
+
     return SizedBox(
       height: height,
       width: width,
