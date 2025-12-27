@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+// import 'package:flutter/material.dart';
+part of 'package:youtube_video_webview/youtube_video_webview.dart';
 
 abstract class YoutubeVideoWebviewAppBarType {}
 

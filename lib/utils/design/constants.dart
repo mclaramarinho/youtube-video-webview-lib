@@ -1,4 +1,4 @@
-import 'dart:ui';
+part of 'package:youtube_video_webview/youtube_video_webview.dart';
 
 class DesignConstants {
   static const double widthBase = 375.0;

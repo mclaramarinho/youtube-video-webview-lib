@@ -1,6 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:youtube_video_webview/utils/youtube_helper.dart';
-import 'package:youtube_video_webview/utils/youtube_webview_app_bar_type.dart';
+// import 'package:flutter/material.dart';
+part of 'package:youtube_video_webview/youtube_video_webview.dart';
 
 class YoutubeWebviewAppBar extends StatelessWidget
     implements PreferredSizeWidget {

@@ -1,4 +1,4 @@
-import 'package:youtube_video_webview/utils/design/constants.dart';
+part of 'package:youtube_video_webview/youtube_video_webview.dart';
 
 class ResponsiveSize {
   static double _getResponsiveWidth(double inputWidth) {

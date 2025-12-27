@@ -1,39 +1,121 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🎬 Youtube Video Webview for Flutter (Android & iOS)
+![Flutter](https://img.shields.io/badge/flutter-compatible-blue)
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A customizable YouTube video player for **Flutter**, supporting embedded playback, fullscreen mode, sharing, captions, and seamless redirection to YouTube inside a webview.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+---
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## ✨ Features
 
-## Features
+<video controls src="features-overview.webm" title="Features overview"></video>
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+- 📐 Adjustable video height and width  
+- 🌐 Redirects to the YouTube page inside a **webview** (via YouTube logo or video title)  
+- 🖥️ Fullscreen video playback  
+- 🔗 Share videos with a **custom message**  
+- 💬 Caption (subtitles) control  
+- ⚙️ Settings button (YouTube native menu)  
+- 🧭 Multiple **AppBar options** for the redirected webview  
 
-## Getting started
+---
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+## 🚀 Getting Started
 
-## Usage
+### Requirements
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+- **Flutter >= 1.17.0**
 
-```dart
-const like = 'sample';
+---
+
+## 📦 Installation
+
+Add the package to your `pubspec.yaml`:
+
+```yaml
+youtube_video_webview: ^1.0.0
 ```
 
-## Additional information
+Then run:
+```sh
+flutter pub get
+```
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+## 🧩 Usage
+### 1️⃣ Import the package
+```dart
+import 'package:youtube_video_webview/youtube_video_webview.dart';
+```
+
+### 2️⃣ Add the widget
+```dart
+YoutubeVideoWebview(
+  videoId: '<VIDEO-ID>',
+  referrerHeader: '<APP-IDENTIFIER-WITH-HTTPS>',
+  externalBrowserSettings: YoutubePageWebViewSettings(
+    appBar: YoutubeVideoWebviewAppBarShare(
+      videoId: '<VIDEO-ID>',
+      shareText: 'Check out this video!',
+    ),
+  ),
+)
+```
+
+## 🌐 YouTube Page Webview Settings
+Customize how the YouTube page opens when redirected:
+```dart
+YoutubePageWebViewSettings(
+  dragToDismiss: true, // default
+  appBar: YoutubeVideoWebviewAppBarShare(
+    videoId: '<VIDEO-ID>',
+    shareText: 'Check out this video!',
+  ),
+)
+```
+
+➡️ See [App Bar Options](#-app-bar-options)
+
+## 🧭 App Bar Options
+
+### 🔹 Default App Bar
+```dart
+appBar: YoutubeVideoWebviewAppBarDefault()
+```
+
+### 🔹 Share App Bar
+```dart
+appBar: YoutubeVideoWebviewAppBarShare(
+  videoId: '<VIDEO-ID>',
+  shareText: 'Check out this video!',
+)
+```
+
+### 🔹 Custom App Bar
+```dart
+appBar: YoutubeVideoWebviewAppBarCustom(
+  appBar: AppBar(
+    title: const Text('Custom App Bar'),
+    backgroundColor: Colors.green,
+  ),
+)
+```
+
+### 🔹 No App Bar (Drag to Dismiss)
+```dart
+dragToDismiss: true
+```
+ℹ️ If no AppBar is provided, drag-to-dismiss is enabled automatically.
+
+## 🧪 Additional Information
+This package is under active development, but it is already stable and ready for production use.
+
+>🚧 More features and improvements coming soon!
+
+## 🤝 Contributing
+Found a bug or have an idea?
+
+👉 (Suggestions & Issues)[https://github.com/mclaramarinho/youtube-video-webview-lib]
+
+## 👤 Author
+🔗 [LinkedIn](https://www.linkedin.com/in/mclaramarinho/)
+
+💻 [GitHub](https://github.com/mclaramarinho)

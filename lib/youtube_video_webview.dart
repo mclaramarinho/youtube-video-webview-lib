@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-import 'package:youtube_video_webview/utils/design/responsive_size.dart';
-import 'package:youtube_video_webview/utils/youtube_helper.dart';
-import 'package:youtube_video_webview/utils/youtube_webview_app_bar_type.dart';
-import 'package:youtube_video_webview/utils/youtube_webview_external_browser_settings.dart';
-import 'package:youtube_video_webview/widgets/external_browser/youtuber_webview_external_browser.dart';
+import 'dart:ui';
+import 'package:share_plus/share_plus.dart';
+
+part 'utils/design/constants.dart';
+part 'utils/design/responsive_size.dart';
+part 'utils/youtube_helper.dart';
+part 'utils/youtube_page_webview_settings.dart';
+part 'utils/youtube_webview_app_bar_type.dart';
+part 'widgets/webview/youtube_page_webview.dart';
+part 'widgets/app_bar/youtube_webview_app_bar.dart';
+part 'widgets/drag_handle/youtube_webview_drag_handle.dart';
 
 class YoutubeVideoWebview extends StatefulWidget {
   final String videoId;
   final double? height;
   final double? width;
   final String referrerHeader;
-  final YoutubeWebViewExternalBrowserSettings externalBrowserSettings;
+  final YoutubePageWebViewSettings externalBrowserSettings;
   final Map<String, String>? additionalHeaders;
 
   const YoutubeVideoWebview({
@@ -20,7 +26,7 @@ class YoutubeVideoWebview extends StatefulWidget {
     this.height,
     this.width,
     this.externalBrowserSettings =
-        const YoutubeWebViewExternalBrowserSettings(),
+        const YoutubePageWebViewSettings(),
     this.additionalHeaders,
     super.key,
   });
@@ -57,7 +63,7 @@ class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
     navigationDelegate = NavigationDelegate(
       onNavigationRequest: (NavigationRequest request) {
         if (request.url.startsWith(YoutubeHelper.watchOnYoutubeUrlStart)) {
-          YoutuberWebviewExternalBrowser.show(
+          YoutuberPageWebview.show(
             request.url,
             youtubeHeaders,
             context,
@@ -70,11 +76,9 @@ class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
         return NavigationDecision.prevent;
       },
       onPageFinished: (url) {
-        if (!addedEventToShareButton) {
-          addedEventToShareButton = true;
-          controller.runJavaScript(YoutubeHelper.shareButtonJS);
-        }
-      }
+        addedEventToShareButton = true;
+        controller.runJavaScript(YoutubeHelper.shareButtonJS);
+      },
     );
   }
 
@@ -93,7 +97,10 @@ class _YoutubeVideoWebviewState extends State<YoutubeVideoWebview> {
       ..addJavaScriptChannel(
         YoutubeHelper.shareChannelName,
         onMessageReceived: (JavaScriptMessage message) {
-          YoutubeHelper.showShareDialog(widget.videoId, useText ? appBarShare!.shareText : null);
+          YoutubeHelper.showShareDialog(
+            widget.videoId,
+            useText ? appBarShare!.shareText : null,
+          );
         },
       )
       ..setNavigationDelegate(navigationDelegate);

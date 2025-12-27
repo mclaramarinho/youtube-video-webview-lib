@@ -1,4 +1,4 @@
-import 'package:share_plus/share_plus.dart';
+part of 'package:youtube_video_webview/youtube_video_webview.dart';
 
 class YoutubeHelper {
   static String getYoutubeEmbedUrl(String videoId) {
@@ -32,23 +32,24 @@ class YoutubeHelper {
     );
   }
 
-  static const String shareChannelName = "ShareChannel"; 
+  static const String shareChannelName = "ShareChannel";
 
-  static String get shareButtonJS => '''
-            document.addEventListener('share', function() {
-              console.log("Shared something ");
-            });
-            const shareButton = document.querySelector('[class*="share"]');
-            console.log("Share button:", shareButton);
-            if (shareButton) {
-              var old_element = shareButton;
-              var new_element = old_element.cloneNode(true);
-              old_element.parentNode.replaceChild(new_element, old_element);
-              new_element.addEventListener('click', function(ev) {
-                ev.preventDefault();
-                ev.stopPropagation();
-                $shareChannelName.postMessage('share_clicked');
-              });
-            }
-          ''';
+  static String get shareButtonJS =>
+      '''
+        window.addEventListener("touchend", (ev) => {
+          const currentTarget = ev.target;
+          const parent = currentTarget.parentElement;
+          if (!parent) return;
+          const parentParent = parent.parentElement;
+          if (!parentParent) return;
+
+          const ariaLabel = parentParent.ariaLabel || "";
+          if (!ariaLabel.toLowerCase().includes('share')) return;
+
+          ev.preventDefault();
+          ev.stopPropagation();
+          $shareChannelName.postMessage('share_clicked');
+        })
+
+      ''';
 }
