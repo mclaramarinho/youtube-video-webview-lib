@@ -1,6 +1,6 @@
 name: youtube_video_webview
 description: "A customizable YouTube video player for Flutter, supporting embedded playback, fullscreen mode, sharing, captions, and seamless redirection to YouTube inside a webview."
-version: 1.0.0
+version: 1.0.1
 repository: "https://github.com/mclaramarinho/youtube-video-webview-lib"
 
 environment:

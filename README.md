@@ -113,7 +113,7 @@ This package is under active development, but it is already stable and ready for
 ## 🤝 Contributing
 Found a bug or have an idea?
 
-👉 (Suggestions & Issues)[https://github.com/mclaramarinho/youtube-video-webview-lib]
+👉 [Suggestions & Issues](https://github.com/mclaramarinho/youtube-video-webview-lib)
 
 ## 👤 Author
 🔗 [LinkedIn](https://www.linkedin.com/in/mclaramarinho/)
