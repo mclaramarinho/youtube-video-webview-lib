@@ -17,6 +17,8 @@ A customizable YouTube video player for **Flutter**, supporting embedded playbac
 - ⚙️ Settings button (YouTube native menu)  
 - 🧭 Multiple **AppBar options** for the redirected webview  
 
+↗️ Check out: [Roadmap](ROADMAP.md)
+
 ---
 
 ## 🚀 Getting Started

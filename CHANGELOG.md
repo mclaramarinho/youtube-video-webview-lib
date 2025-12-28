@@ -15,3 +15,7 @@ No functionality changes
 
 # 1.0.3
 Updated examples/
+
+# 1.0.4
+- Update README and ROADMAP; 
+- add main to example/lib/main.dart

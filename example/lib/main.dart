@@ -1,6 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_video_webview/youtube_video_webview.dart';
 
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'YouTube Video Webview Example',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const Simple(),
+    );
+  }
+}
+
 class Simple extends StatelessWidget {
   const Simple({super.key});
 
