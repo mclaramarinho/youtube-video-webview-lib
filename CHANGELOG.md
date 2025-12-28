@@ -8,3 +8,7 @@ Adds core functionality:
 - ⚙️ Settings button (YouTube native menu)  
 - 🧭 Multiple **AppBar options** for the redirected webview  
 
+## 1.0.2
+Small adjustments for ```pub.dev```
+
+No functionality changes

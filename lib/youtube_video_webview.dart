@@ -12,12 +12,41 @@ part 'widgets/webview/youtube_page_webview.dart';
 part 'widgets/app_bar/youtube_webview_app_bar.dart';
 part 'widgets/drag_handle/youtube_webview_drag_handle.dart';
 
+/// A WebView widget to display a YouTube video by its video ID.
 class YoutubeVideoWebview extends StatefulWidget {
+  /// The YouTube video ID to be displayed.
+  /// 
+  /// For example, for the URL `https://www.youtube.com/embed/ssRIT1OwdWE`,
+  /// the video ID is `ssRIT1OwdWE`.
   final String videoId;
+
+  /// The height of the WebView. If not provided, a default height is used.
+  /// 
+  /// Default is 200 logical pixels.
   final double? height;
+
+  /// The width of the WebView. If not provided, a default width is used.
+  /// 
+  /// Default is 500 logical pixels.
   final double? width;
+
+  /// The referrer header to be included in the WebView requests.
+  /// 
+  /// This is important for YouTube to allow embedding.
+  /// 
+  /// For example, use `https://com.yourapp.domain` as the referrer.
+  /// 
+  /// If not provided, youtube might block the video from being displayed.
   final String referrerHeader;
+
+  /// Settings for the external browser when opening YouTube links.
+  /// 
+  /// Default is an instance of [YoutubePageWebViewSettings] with default values.
   final YoutubePageWebViewSettings externalBrowserSettings;
+
+  /// Additional headers to be included in the WebView requests.
+  /// 
+  /// `Referer` header is added by default using [referrerHeader].
   final Map<String, String>? additionalHeaders;
 
   const YoutubeVideoWebview({
