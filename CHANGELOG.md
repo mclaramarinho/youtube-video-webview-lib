@@ -12,3 +12,6 @@ Adds core functionality:
 Small adjustments for ```pub.dev```
 
 No functionality changes
+
+# 1.0.3
+Updated examples/
