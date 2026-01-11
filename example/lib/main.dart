@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Simple(),
+      home: Center(child: const Simple()),
     );
   }
 }
@@ -26,8 +26,8 @@ class Simple extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return YoutubeVideoWebview(
-      videoId: '<ENTER_VIDEO_ID>',
-      referrerHeader: '<ENTER_REFERRER_URL>',
+      videoId: 'ssRIT1OwdWE',
+      referrerHeader: 'https://www.example.com',
     );
   }
 }

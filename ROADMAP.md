@@ -3,11 +3,11 @@
 _
 
 ## 🔜 Coming Next (2026)
-- **Phase 1: Stabilization**
+- **Phase 2: Project Configuration** 
   - Configure Github Actions for automated publishing
-  - Validate (and enhance) injected-JS performance on less powerful devices
 
-- **Phase 2: New Capabilities**
+- **Phase 3: New Capabilities**
+  - Add more customization props
   - Remove suggested videos button from player
   - Add more customization props
   - Native controls for the player configuration (accessible from ⚙️ button)

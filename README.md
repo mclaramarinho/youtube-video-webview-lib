@@ -1,5 +1,8 @@
 # 🎬 Youtube Video Webview for Flutter (Android & iOS)
 ![Flutter](https://img.shields.io/badge/flutter-compatible-blue)
+![Pub Version](https://img.shields.io/pub/v/youtube_video_webview?link=https%3A%2F%2Fpub.dev%2Fpackages%2Fyoutube_video_webview)
+![Pub Monthly Downloads](https://img.shields.io/pub/dm/youtube_video_webview)
+
 
 A customizable YouTube video player for **Flutter**, supporting embedded playback, fullscreen mode, sharing, captions, and seamless redirection to YouTube inside a webview.
 
